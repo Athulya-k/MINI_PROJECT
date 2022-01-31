@@ -12,12 +12,14 @@
 	
 		function validate()
 		{
-			var name1= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z
+			var name1= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z 
+			//var party1= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z 
 			var ph= /^[0-9]{10}$/; 
                         //var email_valid= /^[\w\d\.]+\@[a-zA-Z\.]+\.[A-Za-z]{1,4}$/; //pattern valid email validation
 			var password_valid=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/; //pattern password allowed A to Z, a to z, 0-9, !@#$%&*()<> character 
 			
 			var name = document.getElementById("name"); //textbox id fname
+           // var party = document.getElementById("party"); //textbox id lname
             //var email = document.getElementById("email"); //textbox id email
             var phone= document.getElementById("phone"); 
             var password = document.getElementById("password"); //textbox id password
@@ -30,6 +32,13 @@
                 name.style.background = '#f08080';
                 return false;                    
             }
+			//if(!party1.test(party.value) || party.value=='') 
+            //{
+				//alert("Enter Party Name Alphabets Only....!");
+               // party.focus();
+               // party.style.background = '#f08080';
+               // return false;                    
+           // 
            
 			
              if(!ph.test(phone.value) || phone.value=='') 
@@ -41,7 +50,7 @@
             }
             if(age.value<18||age.value>150|| age.value=='') 
             {
-				alert("Cannot register!Age invalid....!");
+				//alert("Cannot register!Age invalid....!");
                 age.focus();
                 age.style.background = '#f08080';
                 return false;                    
@@ -77,13 +86,14 @@
 			<li><a href="../admin/a_home.php">HOME</a></li>
 			<li style="float:right;"><a href="../admin/a_logout.php">LOGOUT</a></li>
 		</ul>
-		<form action="" method="POST" class="box" onsubmit="return validate();" enctype="multipart/form-data"> 
+		<form action="" method="POST" class="box" onSubmit="return validate();" enctype="multipart/form-data"> 
 			<h1>CANDIDATE REGISTRATION</h1> 
 			<table align="center">
 				<tr>
 					<th>NAME</th>
 					<td><input type="text" id="name" name="username" class="inp" required></td>
 				</tr>
+				
 				<tr>
 					<th>DATE OF BIRTH:</th>
 					<td><input type="date" id="dob" name="dob" class="inp" onChange="setAge();" required> </td>
@@ -98,32 +108,32 @@
 					<input type="radio" name="gender" value="Female">Female&nbsp;
 					<input type="radio" name="gender" value="Others">Others</td>
 				</tr>
-				
+				<tr>
+					<th>ADDRESS:</th>
+					<td><textarea name="addr" rows="5" class="inp" required></textarea></td>
+				</tr>
 				<tr>
 					<th>MOBILE NO:</th>
 					<td><input type="text" id="phone" name="mobile" class="inp" required></td>
 				</tr>
-				
-				<!-- <tr>
+				<tr>
 					<th>PASSWORD:</th>
 					<td><input type="password" id="password" name="password" class="inp" required></td>
-				</tr> -->
-				<tr>
-					<th>PHOTO</th>
-					<td><input type="file" name="file" id="file" class="inp"></td>
 				</tr>
 				<tr>
 					<th>ADMISSION NO:</th>
-					<td><input type="text" id="admission_no" name="admission" class="inp" required></td>
-				</tr>
-				<tr>
-					<th>DEPARTMENT:</th>
-					<td><input type="text" id="department" name="department" class="inp" required></td>
+					<td><input type="admission" id="admission" name="admission" class="inp" required></td>
 				</tr>
 				<tr>
 					<th>NAME OF POST:</th>
-					<td><input type="text" id="post" name="post" class="inp" required></td>
+					<td><input type="post" id="post" name="post" class="inp" required></td>
 				</tr>
+				<tr>
+					<th>FINGERPRINT</th>
+					<td><input type="file" name="file" id="file" class="inp"></td>
+				</tr>
+				
+				
 				<?php
 					$sql1 = "SELECT * FROM tbl_election where status='Active'";
 					$result = $conn->query($sql1);
@@ -141,6 +151,7 @@
 					}
 					echo"</datalist>";
 				?>
+				
 				<tr>
 					<td><input type="reset" value="reset" name="r" class="reset"></td>
 					<td><input type="submit" value="submit" name="submit"class="submit"></td>
@@ -152,14 +163,13 @@
 			if(isset($_POST['submit']))
 			{
 				$uname=$_POST['username'];
+
 				$dob=$_POST['dob'];
 				$age=$_POST['age'];
 				$gender=$_POST['gender'];
+				$add=$_POST['addr'];
 				$mob=$_POST['mobile'];
 				$pass=$_POST['password'];
-				$adno=$_POST['admission'];
-				$depart=$POST['department'];
-				$postion=$POST['post'];
 				//***********************IMAGE DETAILS*************************
 				$fileName = $_FILES['file']['name'];
 				$fileSize = $_FILES['file']['size'];
@@ -181,7 +191,7 @@
 				$symbol=$uname."_".$mob."_".$party.".".$fileExtension1;
 				
 				$sql="INSERT INTO tbl_candidate
-				values(id,'".$uname."','".$dob."',".$age.",'".$gender."',".$mob.",'".$pass."','".$photo."','".$adno."','".$depat."','".$postion."',CURRENT_TIMESTAMP(),'".$symbol."','".$eid."')";
+				values(id,'".$uname."','".$dob."',".$age.",'".$gender."','".$add."',".$mob.",'".$pass."','".$photo."',CURRENT_TIMESTAMP(),'".$eid."')";
 				if ($conn->query($sql) === TRUE)
 				{
 					if(move_uploaded_file($fileTmpName, "../uploads/".$photo))
