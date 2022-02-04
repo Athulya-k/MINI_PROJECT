@@ -32,13 +32,7 @@
                 name.style.background = '#f08080';
                 return false;                    
             }
-			//if(!party1.test(party.value) || party.value=='') 
-            //{
-				//alert("Enter Party Name Alphabets Only....!");
-               // party.focus();
-               // party.style.background = '#f08080';
-               // return false;                    
-           // 
+			
            
 			
              if(!ph.test(phone.value) || phone.value=='') 
@@ -108,10 +102,7 @@
 					<input type="radio" name="gender" value="Female">Female&nbsp;
 					<input type="radio" name="gender" value="Others">Others</td>
 				</tr>
-				<tr>
-					<th>ADDRESS:</th>
-					<td><textarea name="addr" rows="5" class="inp" required></textarea></td>
-				</tr>
+				
 				<tr>
 					<th>MOBILE NO:</th>
 					<td><input type="text" id="phone" name="mobile" class="inp" required></td>
@@ -121,12 +112,16 @@
 					<td><input type="password" id="password" name="password" class="inp" required></td>
 				</tr>
 				<tr>
+					<th>DEPARTMENT:</th>
+					<td><input type="department" id="department" name="department" class="inp" required></td>
+				</tr>
+				<tr>
 					<th>ADMISSION NO:</th>
 					<td><input type="admission" id="admission" name="admission" class="inp" required></td>
 				</tr>
 				<tr>
 					<th>NAME OF POST:</th>
-					<td><input type="post" id="post" name="post" class="inp" required></td>
+					<td><input type="position" id="position" name="position" class="inp" required></td>
 				</tr>
 				<tr>
 					<th>FINGERPRINT</th>
@@ -134,23 +129,7 @@
 				</tr>
 				
 				
-				<?php
-					$sql1 = "SELECT * FROM tbl_election where status='Active'";
-					$result = $conn->query($sql1);
-					echo"<datalist id='election'>";
-					if ($result->num_rows > 0)
-					{
-						while($row = $result->fetch_assoc())
-						{	
-							echo"<option value='".$row["e_id"]."'>";
-						}
-					}
-					else
-					{
-						echo"<tr style='height:50px'><td colspan='4'>NO DATA</td></tr>";
-					}
-					echo"</datalist>";
-				?>
+				
 				
 				<tr>
 					<td><input type="reset" value="reset" name="r" class="reset"></td>
@@ -167,9 +146,12 @@
 				$dob=$_POST['dob'];
 				$age=$_POST['age'];
 				$gender=$_POST['gender'];
-				$add=$_POST['addr'];
 				$mob=$_POST['mobile'];
 				$pass=$_POST['password'];
+				$dept=$_POST['department'];
+				$adno=$_POST['admission'];
+				$post=$_POST['position'];
+				
 				//***********************IMAGE DETAILS*************************
 				$fileName = $_FILES['file']['name'];
 				$fileSize = $_FILES['file']['size'];
@@ -180,28 +162,21 @@
 				//***********************NEW IMAGE NAME************************
 				$photo=$uname."_".$mob.".".$fileExtension; 
 				
-				//***********************SYMBOL DETAILS*************************
-				$fileName1 = $_FILES['symbol']['name'];
-				$fileSize1 = $_FILES['symbol']['size'];
-				$fileTmpName1  = $_FILES['symbol']['tmp_name'];
-				$fileType1 = $_FILES['symbol']['type'];
-				//***********************SYMBOL EXTENTION***********************
-				$fileExtension1 = strtolower(end(explode('.',$fileName1)));
-				//***********************NEW SYMBOL NAME************************
-				$symbol=$uname."_".$mob."_".$party.".".$fileExtension1;
+		
 				
 				$sql="INSERT INTO tbl_candidate
-				values(id,'".$uname."','".$dob."',".$age.",'".$gender."','".$add."',".$mob.",'".$pass."','".$photo."',CURRENT_TIMESTAMP(),'".$eid."')";
+				values(id,'".$uname."','".$dob."','".$age."','".$gender."','".$mob."','".$pass."','".$dept."','".$adno."','".$post."','".$photo."',CURRENT_TIMESTAMP())";
 				if ($conn->query($sql) === TRUE)
 				{
 					if(move_uploaded_file($fileTmpName, "../uploads/".$photo))
 					{
-						if(move_uploaded_file($fileTmpName1, "../uploads/symbol/".$symbol))
-						{
+					
+							
+						
 							$_SESSION["cname"] = $uname;
 							echo"<script>alert('Registration is done Successfully');
 							window.location.replace('../admin/a_home.php');</script>";
-						}
+						
 					}
 				} 
 				else 
