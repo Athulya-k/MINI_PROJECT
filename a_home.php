@@ -28,11 +28,11 @@
 		</ul>
 		<br>
 		<table align="right" cellspacing="20">
-			<tr><th><a href="a_ballot_list.php"><input type="button" class="button4" value="VIEW BALLOT LIST"></a></th></tr>
-			<tr><th><a href="a_voters_list.php"><input type="button" class="button4" value="VIEW VOTER LIST"></a></th></tr>
-			<tr><th><a href="a_candidates_list.php"><input type="button" class="button4" value="VIEW CANDIDATE LIST"></a></th></tr>
 			<tr><th><a href="../candidate/c_register.php"><input type="button" class="button4" value="REGISTER NEW CANDIDATE"></a></th></tr>
-			<tr><th><a href="../voter/v_fingerid.php"><input type="button" class="button4" value="REGISTER NEW VOTER"></a></th></tr>
+			<!--<tr><th><a href="../voter/v_register.php"><input type="button" class="button4" value="REGISTER NEW VOTER"></a></th></tr>-->
+			<tr><th><a href="a_candidates_list.php"><input type="button" class="button4" value="VIEW CANDIDATE LIST"></a></th></tr>
+			<tr><th><a href="a_voters_list.php"><input type="button" class="button4" value="VIEW VOTER LIST"></a></th></tr>
+			<tr><th><a href="a_ballot_list.php"><input type="button" class="button4" value="VIEW BALLOT LIST"></a></th></tr>
 		</table>
 	</body>
 </html>
