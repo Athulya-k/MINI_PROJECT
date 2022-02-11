@@ -59,7 +59,7 @@
 	<body>
 		<ul>
 			<li><a href="a_home.php">HOME</a></li>
-			<li style="float:right;"><a href="a_logout.php">LOGOUT</a></li>
+			<li style="float:right;"></li>
 		</ul>
 		<br><br><br>
 		<center>		
@@ -72,7 +72,10 @@
 					<th>DOB</th>
 					<th>Age</th>
 					<th>Gender</th>
-					<th>Mob No.</th>
+					<th>Department</th>
+					<th>Admission no</th>
+					<th>Username</th>
+					<th>password</th>
 					<th>Timestamp</th>
 				</tr>
 				<?php
@@ -87,12 +90,16 @@
 						echo"<tr>
 						<td>".$c."</td>
 						<td>".$row["userid"]."</td>
-						<td>".$row["name"]."</td>
+						<td>".$row["uname"]."</td>
 						<td>".$row["dob"]."</td>
 						<td>".$row["age"]."</td>
 						<td>".$row["gender"]."</td>
-						<td>".$row["mobile"]."</td>
-						<td>".$row["address"]."</td>
+						<td>".$row["Department"]."</td>
+						<td>".$row["Admission no"]."</td>
+						<td>".$row["userid"]."</td>
+						<td>".$row["password"]."</td>
+						
+
 						<td>".$row["timestamp"]."</td>
 						</tr>";
 						}
