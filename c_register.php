@@ -14,15 +14,15 @@
 		{
 			var name1= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z 
 			//var party1= /^[a-z A-Z]+$/; //pattern allowed alphabet a-z or A-Z 
-			var ph= /^[0-9]{10}$/; 
+			//var ph= /^[0-9]{10}$/; 
                         //var email_valid= /^[\w\d\.]+\@[a-zA-Z\.]+\.[A-Za-z]{1,4}$/; //pattern valid email validation
-			var password_valid=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/; //pattern password allowed A to Z, a to z, 0-9, !@#$%&*()<> character 
+			//var password_valid=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/; //pattern password allowed A to Z, a to z, 0-9, !@#$%&*()<> character 
 			
 			var name = document.getElementById("name"); //textbox id fname
            // var party = document.getElementById("party"); //textbox id lname
             //var email = document.getElementById("email"); //textbox id email
-            var phone= document.getElementById("phone"); 
-            var password = document.getElementById("password"); //textbox id password
+            //var phone= document.getElementById("phone"); 
+           // var password = document.getElementById("password"); //textbox id password
             var age= document.getElementById("age");
 			
 			if(!name1.test(name.value) || name.value=='') 
@@ -35,13 +35,13 @@
 			
            
 			
-             if(!ph.test(phone.value) || phone.value=='') 
-            {
-				alert("Enter Valid phone number....!");
-                phone.focus();
-                phone.style.background = '#f08080';
-                return false;                    
-            }
+             //if(!ph.test(phone.value) || phone.value=='') 
+            //{
+				//alert("Enter Valid phone number....!");
+                //phone.focus();
+                //phone.style.background = '#f08080';
+               // return false;                    
+           // }
             if(age.value<18||age.value>150|| age.value=='') 
             {
 				//alert("Cannot register!Age invalid....!");
@@ -51,13 +51,13 @@
             }
 				
 
-			if(!password_valid.test(password.value) || password.value=='') 
-            {
-				alert("Alphanumeric Password Must Be 6 to 12 characters long.Special characters !@#$%&*()<> allowed....!");
-                password.focus();
-                password.style.background = '#f08080';
-                return false;                    
-            }
+			//if(!password_valid.test(password.value) || password.value=='') 
+           // {
+				//alert("Alphanumeric Password Must Be 6 to 12 characters long.Special characters !@#$%&*()<> allowed....!");
+               // password.focus();
+               // password.style.background = '#f08080';
+               // return false;                    
+            //}
 		}
 		
                 
@@ -103,14 +103,8 @@
 					<input type="radio" name="gender" value="Others">Others</td>
 				</tr>
 				
-				<tr>
-					<th>MOBILE NO:</th>
-					<td><input type="text" id="phone" name="mobile" class="inp" required></td>
-				</tr>
-				<tr>
-					<th>PASSWORD:</th>
-					<td><input type="password" id="password" name="password" class="inp" required></td>
-				</tr>
+
+				
 				<tr>
 					<th>DEPARTMENT:</th>
 					<td><input type="department" id="department" name="department" class="inp" required></td>
@@ -123,10 +117,7 @@
 					<th>NAME OF POST:</th>
 					<td><input type="position" id="position" name="position" class="inp" required></td>
 				</tr>
-				<tr>
-					<th>FINGERPRINT</th>
-					<td><input type="file" name="file" id="file" class="inp"></td>
-				</tr>
+				
 				
 				
 				
@@ -146,30 +137,30 @@
 				$dob=$_POST['dob'];
 				$age=$_POST['age'];
 				$gender=$_POST['gender'];
-				$mob=$_POST['mobile'];
-				$pass=$_POST['password'];
+				//$mob=$_POST['mobile'];
+				//$pass=$_POST['password'];
 				$dept=$_POST['department'];
 				$adno=$_POST['admission'];
 				$post=$_POST['position'];
 				
 				//***********************IMAGE DETAILS*************************
-				$fileName = $_FILES['file']['name'];
-				$fileSize = $_FILES['file']['size'];
-				$fileTmpName  = $_FILES['file']['tmp_name'];
-				$fileType = $_FILES['file']['type'];
+				//$fileName = $_FILES['file']['name'];
+				//$fileSize = $_FILES['file']['size'];
+				//$fileTmpName  = $_FILES['file']['tmp_name'];
+				//$fileType = $_FILES['file']['type'];
 				//***********************IMAGE EXTENTION***********************
-				$fileExtension = strtolower(end(explode('.',$fileName)));
+				//$fileExtension = strtolower(end(explode('.',$fileName)));
 				//***********************NEW IMAGE NAME************************
-				$photo=$uname."_".$mob.".".$fileExtension; 
+				//$photo=$uname.".".$fileExtension; 
 				
 		
 				
 				$sql="INSERT INTO tbl_candidate
-				values(id,'".$uname."','".$dob."','".$age."','".$gender."','".$mob."','".$pass."','".$dept."','".$adno."','".$post."','".$photo."',CURRENT_TIMESTAMP())";
+				values(id,'".$uname."','".$dob."','".$age."','".$gender."','".$dept."','".$adno."','".$post."',CURRENT_TIMESTAMP())";
 				if ($conn->query($sql) === TRUE)
 				{
-					if(move_uploaded_file($fileTmpName, "../uploads/".$photo))
-					{
+					//if(move_uploaded_file($fileTmpName, "../uploads/".$photo))
+					
 					
 							
 						
@@ -177,7 +168,7 @@
 							echo"<script>alert('Registration is done Successfully');
 							window.location.replace('../admin/a_home.php');</script>";
 						
-					}
+					
 				} 
 				else 
 				{
