@@ -59,7 +59,7 @@
 	<body>
 		<ul>
 			<li><a href="a_home.php">HOME</a></li>
-			<li style="float:right;"><a href="a_logout.php">LOGOUT</a></li>
+			<li style="float:right;"></li>
 		</ul>
 		<br><br><br>
 		<center>		
@@ -67,17 +67,14 @@
 				<tr style="height:50px"><th colspan="13"><h2>Candidate List</h2></th></tr>
 				<tr style="height:50px">
 					<th>S/No.</th>
-					<th>Photo</th>
 					<th>ID</th>
 					<th>Name</th>
 					<th>DOB</th>
 					<th>Age</th>
 					<th>Gender</th>
-					<th>Mob No.</th>
-					<th>Party</th>
-					<th>Symbol</th>
-					<th>Election ID</th>
-					<th>Address</th>
+					<th>Department</th>
+					<th>Admission no</th>
+					<th>Name of post</th>
 					<th>Timestamp</th>
 				</tr>
 				<?php
@@ -91,17 +88,14 @@
 						{	$c++;
 						echo"<tr>
 						<td>".$c."</td>
-						<td><img src='../uploads/".$row["photo"]."' alt='".$row["uname"]."' class='avatar'></td>
 						<td>".$row["id"]."</td>
 						<td>".$row["uname"]."</td>
 						<td>".$row["dob"]."</td>
 						<td>".$row["age"]."</td>
 						<td>".$row["gender"]."</td>
-						<td>".$row["mobile"]."</td>
-						<td>".$row["party"]."</td>
-						<td><img src='../uploads/symbol/".$row["symbol"]."' alt='".$row["party"]."' class='avatar'></td>
-						<td>".$row["election_id"]."</td>
-						<td>".$row["address"]."</td>
+						<td>".$row["Department"]."</td>
+						<td>".$row["Admission no"]."</td>
+						<td>".$row["Name of post"]."</td>
 						<td>".$row["timestamp"]."</td>
 						</tr>";
 						}
