@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$fid=$_GET["fid"];
+	
 	$vote=$approval=NULL;
 	if($_SESSION["username"] == NULL && $_SESSION["id"]==NULL)
 	{
@@ -192,61 +192,63 @@
 						$name=$row["name"];
 					}
 				}
+				
+				
+				
+				
+				
+			
+				
+				
+				
+				
+				
+				
 			?>
 			<div>
 				<div class="div1">
 					<table border="0"class="table1">
 						<tr>
-							<th rowspan="2" class="th1"><img src="../uploads/<?php echo $photo;?>" alt="Avatar" class="avatar"></th>
+							<th rowspan="2" class="th1"></th>
 							<td class="td1">ID :<?php echo " ".$userid;?></td>
 						</tr>
 						<tr>
 							<td class="td1">Name :<?php echo " ".$name;?></td>
 						</tr>
+						
+						
+						
+						<tr>
+<th>browse</th>
+<td><input type="file" name="file" id="file" class="inp"></td>
+</tr>
+
+
+
+
+<?php
+
+
+
+	//***********************IMAGE DETAILS*************************
+//$fileName = $_FILES['file']['name'];
+//$fileSize = $_FILES['file']['size'];
+//$fileTmpName  = $_FILES['file']['tmp_name'];
+//$fileType = $_FILES['file']['type'];
+//***********************IMAGE EXTENTION***********************
+//$fileExtension = strtolower(end(explode('.',$fileName)));
+//***********************NEW IMAGE NAME************************
+//$photo=$name.".".$fileExtension;
+
+?>
+						
 					</table>
 				</div>
 			</div>
 			<br><br><br><br><br><br><br><br><br><hr><br><br>
-		<?php
-			if($vote=='N'&& $approval=='Y')
-			{
-		?>
-			<table border="0" >
-				<tr>
-					<td>
-						<a href="v_voting.php?val=1&fid=<?php echo $fid;?>&aid=<?php echo $id;?>" class="a1">
-						<div class="polaroid container">
-							<img src="../../img/electronic_voting.jpg?aid=<?php echo $id;?>" alt="ELECTRONIC VOTING" style="width:95%">
-								<div class="middle">
-									<div class="text">ELECTRONIC VOTING</div>
-								</div>
-						</div>
-						</a>
-					</td>
-					<td>
-						<a href="v_voting.php?val=2&fid=<?php echo $fid;?>&aid=<?php echo $id;?>" class="a1">
-						<div class="polaroid container">
-							<img src="../../img/online_voting.jpg" alt="ONLINE VOTING" style="width:80%">
-								<div class="middle">
-									<div class="text">ONLINE VOTING</div>
-								</div>
-						</div>
-						</a>
-					</td>
-				</tr>
-			</table>
-		<?php
-			}
-			else if($vote=='Y'&& $approval=='Y')
-			{
-				echo"<div class='header1'><h1>You have already voted!</h1></div>";
-			}
-			else
-			{
-				echo"<div class='header1'><h1>You are not eligible for this election</h1></div>";
-			}
-		?>
-			<br><br><br><hr><br><br>
+			
+		
+		
 		</center>
 	</body>
 </html>
