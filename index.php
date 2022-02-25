@@ -10,13 +10,12 @@ session_start();
 	</head>
 	<body>
 		<ul>
-			
+			<li><a href="index.php">Home</a></li>
 			<li><a href="php/voter/v_login.php">Voter</a></li>
-			<li><a href="php/admin/a_results.php">Election Status & Results</a></li>
-			<li><a href="php/search.php">Electoral Roll Search</a></li>
+			<li><a href="php/admin/a_result.php">Election Status & Results</a></li>
+			<li><a href="php/searc.php">Electoral Roll Search</a></li>
 			<li><a href="php/admin/admin.php">Admin</a></li>
 			<li><a href="php/staff/staff.php">Staff</a></li>
-			
 		</ul>
 	</body>
 </html>
