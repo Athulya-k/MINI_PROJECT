@@ -27,7 +27,7 @@
 			<!--<tr><th><a href="../candidate/c_register.php"><input type="button" class="button4" value="REGISTER NEW CANDIDATE"></a></th></tr>-->
 			<!--<tr><th><a href="../voter/v_register.php"><input type="button" class="button4" value="REGISTER NEW VOTER"></a></th></tr>-->
 			<tr><th><a href="admin/sear_cand.php"><input type="button" class="button4" value="VIEW CANDIDATE LIST"></a></th></tr>
-			<tr><th><a href="admin/dep_voterlist.php"><input type="button" class="button4" value="VIEW VOTER LIST"></a></th></tr>
+			<!--<tr><th><a href="admin/dep_list.php"><input type="button" class="button4" value="VIEW VOTER LIST"></a></th></tr>-->
 			<!--<tr><th><a href="a_ballot_list.php"><input type="button" class="button4" value="VIEW BALLOT LIST"></a></th></tr>-->
 		</table>
 	</body>
