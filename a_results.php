@@ -45,109 +45,60 @@
 			}
 			tr:hover {background-color: #F4F4F4}
 			
-			.list,option{
-			  text-align:center;
-			  align:center;
-			  width: 30%;
-			  padding: 12px;
-			  border: 1px solid #ccc;
-			  border-radius: 20px;
-			  resize: vertical;
-			  font-weight:bold;
-			  font-size:15px;
-			  font-family:sans-serif;
-			}
 			
-			.msg{
-			  text-align:center;
-			  align:center;
-			  width: 25%;
-			  font-weight:bold;
-			  font-size:15px;
-			  font-family:sans-serif;
-			  padding: 12px;
-			  border: 1px solid #ccc;
-			  border-radius: 20px;
-			  resize: vertical;
-			  background-color: #F4F4F4;
-			}
-			.cname{
-			  text-align:center;
-			  align:center;
-			  font-weight:bold;
-			  font-size:15px;
-			  font-family:monospace;
-			  padding: 10px;
-			  border-radius: 20px;
-			  resize: vertical;
-			  background-color: #D8EAF3;
-			}
-			.winner{
-			  text-align:center;
-			  align:center;
-			  font-weight:bold;
-			  font-size:20px;
-			  font-family:verdana;
-			  padding: 10px;
-			  
-			  resize: vertical;
-			  background-color: red;
-			}
 		</style>
 	</head>
 	<body>
 		<ul>
 			<li><a href="../../index.php">Home</a></li>
-			<li><a href="../voter/v_login.php">Voter</a></li>
+			<!--<li><a href="../voter/v_login.php">Voter</a></li>
 			<li><a href="a_results.php">Election Status & Results</a></li>
 			<li><a href="../search.php">Electoral Roll Search</a></li>
-			<li><a href="admin/admin.php">Admin</a></li>
+			<li><a href="admin/admin.php">Admin</a></li>-->
 		</ul>
 		<br><br><br><br><br>
-		<center>
+		<center>		
+			<table border="1" >
+				<tr style="height:50px"><th colspan="13"><h2>Candidate List</h2></th></tr>
+				<tr style="height:50px">
+					<th>S/No.</th>
+					<th>ID</th>
+					<th>Name</th>
+					
+					
+					<th>Department</th>
+					
+					<th>Name of post</th>
+					<th>votes</th>
+					<th>Timestamp</th>
+				</tr>
 				<?php
 					include("../dbconnect.php");
-					
-					$sql1 = "SELECT * FROM tbl_election where status='Active'";
-					$result = $conn->query($sql1);
-					echo"<datalist id='election'>";
+					$sql = "SELECT * FROM tbl_candidate";
+					$result = $conn->query($sql);
+					$c=0;
 					if ($result->num_rows > 0)
 					{
 						while($row = $result->fetch_assoc())
-						{	
-							echo"<option value='".$row["e_id"]."'>";
+						{	$c++;
+						echo"<tr>
+						<td>".$c."</td>
+						<td>".$row["id"]."</td>
+						<td>".$row["uname"]."</td>
+						<td>".$row["department"]."</td>
+						<td>".$row["post"]."</td>
+						
+						<td>".$row["votes"]."</td>
+						<td>".$row["timestamp"]."</td>
+						</tr>";
 						}
 					}
 					else
 					{
-						echo"<option value='NO DATA'>";
+						echo"<tr style='height:50px'><td colspan='13'>NO DATA</td></tr>";
 					}
-					echo"</datalist>";
 				?>
-				<form>
-					<input class="list" list="election" name="eid"  oninput="election(this.value)" required placeholder="Select the Election ID">
-				</form>
-					<script>
-						function election(str) {
-						  var xhttp;    
-						  if (str == "") {
-							document.getElementById("list").innerHTML = "";
-							return;
-						  }
-						  xhttp = new XMLHttpRequest();
-						  xhttp.onreadystatechange = function() {
-							if (this.readyState == 4 && this.status == 200) {
-							  document.getElementById("list").innerHTML = this.responseText;
-							}
-						  };
-						  xhttp.open("GET", "a_untitled1.php?eid="+str, true);
-						  xhttp.send();
-						}
-					</script>
-					<br>
-					<div id="list">
-						<div class="msg">Election Results will be listed here...</div>
-					</div>
+			</table>
 		</center>
 	</body>
 </html>
