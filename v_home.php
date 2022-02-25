@@ -1,27 +1,14 @@
 <?php
-	session_start();
 	
-	$vote=$approval=NULL;
-	if($_SESSION["username"] == NULL && $_SESSION["id"]==NULL)
-	{
-		header("Location: v_login.php");
-	}
-	else
-	{
-		include("../dbconnect.php");
+	include("../dbconnect.php");
 		
-		$sql2 = "SELECT * FROM tbl_voting_details where voter_id='".$_SESSION["id"]."'AND status='Active'";
-		$result = $conn->query($sql2);
-
-		if ($result->num_rows > 0)
-		{
-			while($row = $result->fetch_assoc())
-			{
-				$id=$row["id"];
-				$vote=$row["vote"];
-				$approval=$row["approval"];
-			}
-		}
+	session_start();
+	$id = $_SESSION["id"];
+	$name=$_SESSION["username"];
+	$dept=$_SESSION["department"];
+	
+		
+		
 ?>
 <html>
 	<head>
@@ -172,6 +159,7 @@
 		</style>
 	</head>
 	<body>
+		<form action="compare_image.php" method="GET" >
 		<ul>
 			<li><a href="v_home.php?fid=<?php echo $fid;?>">HOME</a></li>
 			<li style="float:right;"><a href="v_logout.php">LOGOUT</a></li>
@@ -180,16 +168,17 @@
 		<center>
 			<?php
 				include("../dbconnect.php");
-				$sql = "SELECT * FROM tbl_voter where userid='".$_SESSION["id"]."'";
+				$sql = "SELECT * FROM tbl_voter where userid='$id'";
 				$result = $conn->query($sql);
 
 				if ($result->num_rows > 0)
 				{
 					while($row = $result->fetch_assoc())
 					{
-						$photo=$row["photo"];
+						
 						$userid=$row["userid"];
 						$name=$row["name"];
+						$dept=$row["department"];
 					}
 				}
 				
@@ -209,11 +198,14 @@
 				<div class="div1">
 					<table border="0"class="table1">
 						<tr>
-							<th rowspan="2" class="th1"></th>
-							<td class="td1">ID :<?php echo " ".$userid;?></td>
+							<th rowspan="3" class="th1"></th>
+							<td class="td1">ID :<?php echo " ".$id;?></td>
 						</tr>
 						<tr>
 							<td class="td1">Name :<?php echo " ".$name;?></td>
+						</tr>
+						<tr>
+							<td class="td1">Department :<?php echo " ".$dept;?></td>
 						</tr>
 						
 						
@@ -222,6 +214,28 @@
 <th>browse</th>
 <td><input type="file" name="file" id="file" class="inp"></td>
 </tr>
+<?php
+$sql = "SELECT photo FROM `tbl_voter` where name='$name'and id='$id'";
+$all_photo = mysqli_query($conn,$sql);
+
+$photo = mysqli_fetch_array($all_photo,MYSQLI_ASSOC);
+if(isset($_GET['browse']))
+{
+$img=$photo['photo'];
+$img2=$_GET['file'];
+$_SESSION['img']=$img;
+$_SESSION['img2']=$img2;
+
+}
+?>
+<tr>
+<th>compare and vote</th>
+ <td><input type="submit" name="button1" id="button1" class="button1" value="compare"></td>
+</tr>
+
+
+
+
 
 
 
@@ -250,8 +264,9 @@
 		
 		
 		</center>
+		</form>
 	</body>
 </html>
 <?php
-	}
+	
 ?>

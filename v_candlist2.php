@@ -18,8 +18,8 @@
 	$sql3 = "SELECT * FROM `tbl_candidate` where party= 'UUC'";
 	$all_uuc = mysqli_query($conn,$sql3);
 	
-	$sql4 = "SELECT * FROM `tbl_candidate` where party= 'lady representative'";
-	$all_lady = mysqli_query($conn,$sql4);
+	//$sql4 = "SELECT * FROM `tbl_candidate` where party= 'lady representative'";
+	//$all_lady = mysqli_query($conn,$sql4);
 	
 	$sql5 = "SELECT * FROM `tbl_candidate` where party= 'vice chairperson'";
 	$all_vc = mysqli_query($conn,$sql5);
@@ -318,32 +318,7 @@
 		
 		<br>
 		
-		<tr><td>
-		<label style="color:white;">LADY REPRESENTATIVE</label></td>
-		<td>
-		<select name="lady_representative">
-			<option value="none" selected > select an option</option>
-			<?php
-				// use a while loop to fetch data
-				// from the $all_categories variable
-				// and individually display as an option
-				while ($lady = mysqli_fetch_array(
-						$all_lady,MYSQLI_ASSOC)):;
-			?>
-				<option value="<?php echo $lady["uname"];
-					// The value we usually set is the primary key
-				?>">
-					<?php echo $lady["uname"];
-						// To show the category name to the user
-					?>
-				</option>
-			<?php
-				endwhile;
-				// While loop must be terminated
-			?>
-		</td>
-		</tr>
-		</select>
+		
 		</table>
 		
 		<br>
@@ -372,7 +347,7 @@
 		
 		$chairperson=$_POST['chairperson'];
 		$pg_representative=$_POST['pg_representative'];
-		$lady_representative=$_POST['lady_representative'];
+		//$lady_representative=$_POST['lady_representative'];
 		$UUC=$_POST['UUC'];
 		$as=$_POST['arts_secretary'];
 		$gs=$_POST['general_secretary'];
@@ -381,7 +356,7 @@
 		
 		$sqll1="UPDATE tbl_candidate set votes = votes+1 where uname='$pg_representative'" ;
 		$sqll="UPDATE tbl_candidate set votes = votes+1 where uname='$chairperson'" ;
-		$sqll2="UPDATE tbl_candidate set votes = votes+1 where uname='$lady_representative'" ;
+		//$sqll2="UPDATE tbl_candidate set votes = votes+1 where uname='$lady_representative'" ;
 		$sqll3="UPDATE tbl_candidate set votes = votes+1 where uname='$UUC'" ;
 		$sqll5="UPDATE tbl_candidate set votes = votes+1 where uname='$as'" ;
 		$sqll6="UPDATE tbl_candidate set votes = votes+1 where uname='$gs'" ;
@@ -398,11 +373,7 @@
 			$conn->query($sqll1);
 			
 		}
-		if($lady_representative!='none')
-		{
-			$conn->query($sqll2);
 		
-		}
 		if($UUC!='none')
 		{
 			$conn->query($sqll3);
